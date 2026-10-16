@@ -1,0 +1,13 @@
+/*
+!/.gitignore
+!/hypr/
+!/waybar/
+!/wofi/
+!/kitty/
+!/Code/
+/Code/*
+!/Code/User/
+/Code/User/*
+!/Code/User/settings.json
+!/bash/
+!/LICENSE

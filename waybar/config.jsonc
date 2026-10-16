@@ -1,0 +1,95 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mode": "dock",
+    "height": 32,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "custom/lang", "group/stats", "group/controls", "group/system"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "persistent-workspaces": { "*": 4 },
+        "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+        "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'"
+    },
+
+    "clock": {
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+
+    "tray": { "icon-size": 16, "spacing": 8 },
+
+    "custom/lang": { "exec": "~/.config/waybar/scripts/lang.sh", "interval": 1, "format": "{}" },
+    "hyprland/language-old": {
+        "format": "{short}",
+        "format-en": "EN",
+        "format-ru": "RU"
+    },
+
+    "group/stats": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "memory", "temperature"]
+    },
+    "cpu":         { "format": " {usage}%",       "interval": 3 },
+    "memory":      { "format": " {percentage}%",  "interval": 5 },
+    "temperature": {
+        "format": " {temperatureC}°",
+        "critical-threshold": 80,
+        "interval": 5
+    },
+
+    "group/controls": {
+        "orientation": "horizontal",
+        "modules": ["backlight", "pulseaudio", "pulseaudio#mic"]
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl -q set 5%+",
+        "on-scroll-down": "brightnessctl -q set 5%-"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " mute",
+        "format-icons": { "default": ["", "", ""] },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+    "pulseaudio#mic": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": ["network", "bluetooth", "battery"]
+    },
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{essid}  {signalStrength}%  {ipaddr}",
+        "on-click": "kitty -e nmtui"
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "format-off": "",
+        "format-connected": "",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
+    },
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+        "tooltip-format": "{timeTo}"
+    }
+}

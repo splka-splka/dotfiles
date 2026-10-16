@@ -1,0 +1,10 @@
+show=drun
+width=500
+height=380
+location=center
+prompt=> run
+allow_images=true
+image_size=24
+insensitive=true
+no_actions=true
+hide_scroll=true

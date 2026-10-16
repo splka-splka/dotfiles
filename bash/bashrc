@@ -1,0 +1,13 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+# PS1='[\u@\h \W]\$ '
+
+# ===== cyberpunk prompt =====
+PS1='\[\e[1;38;2;127;217;98m\]\u\[\e[0;38;2;120;120;140m\]@\[\e[1;38;2;95;200;217m\]\h \[\e[1;38;2;224;138;60m\]\W \[\e[1;38;2;217;83;127m\]❯\[\e[0m\] '

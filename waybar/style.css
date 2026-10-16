@@ -1,0 +1,84 @@
+@define-color orange  #ff7b00;
+@define-color green   #00ff41;
+@define-color pink    #ff0080;
+@define-color yellow  #ffff00;
+@define-color cyan    #00ffff;
+@define-color purple  #b026ff;
+@define-color black   #000000;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+window#waybar {
+    background: transparent;
+    color: @black;
+}
+
+/* общий вид блоков */
+#workspaces, #clock, #custom-lang, #stats, #controls, #system {
+    margin: 4px 0;
+    padding: 0 10px;
+}
+#custom-lang, #stats, #controls { margin-right: 6px; }
+#system { margin-right: 8px; }
+
+#cpu, #memory, #temperature,
+#backlight, #pulseaudio,
+#network, #bluetooth, #battery {
+    padding: 0 5px;
+    color: @black;
+}
+
+/* ===== Воркспейсы — оранжевый блок с цифрами ===== */
+#workspaces {
+    margin: 4px 8px;
+    padding: 0;
+    background: @orange;
+}
+#workspaces button {
+    padding: 0 9px;
+    margin: 0;
+    background: transparent;
+    color: @black;
+}
+#workspaces button.active {
+    background: @black;
+    color: @orange;
+}
+#workspaces button.empty:not(.active) {
+    color: alpha(@black, 0.4);
+}
+#workspaces button:hover {
+    background: alpha(@black, 0.25);
+    color: @black;
+}
+
+/* ===== Цвета блоков ===== */
+#clock       { background: @green;  padding: 0 14px; }
+#custom-lang { background: @yellow; }
+#stats       { background: @cyan; }
+#controls    { background: @purple; }
+#system      { background: @pink; }
+
+#tray { margin-right: 6px; }
+
+/* ===== Состояния ===== */
+#temperature.critical            { color: #ffffff; background: #ff0000; }
+#pulseaudio.muted                { color: alpha(@black, 0.4); }
+#battery.warning:not(.charging)  { color: @yellow; }
+#battery.critical:not(.charging) { color: #ffffff; }
+
+/* ===== Ховеры ===== */
+#clock:hover       { background: shade(@green, 1.15); }
+#custom-lang:hover { background: shade(@yellow, 0.9); }
+#stats:hover       { background: shade(@cyan, 0.9); }
+#controls:hover    { background: shade(@purple, 1.15); }
+#system:hover      { background: shade(@pink, 1.15); }
